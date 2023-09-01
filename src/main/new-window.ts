@@ -25,9 +25,10 @@ export const newWindow = () => {
 
     const shellConfig = getShellConfig();
     const pty = spawn(shellConfig.file, [], {
-      name: "xterm-256color",
+      argv0: shellConfig.argv0,
+      cwd: process.env.HOME ?? "/",
       env: { ...process.env, ...shellConfig.env },
-      argv0: shellConfig.argv0
+      name: "xterm-256color",
     });
 
     pty.onData((data) => window.webContents.send("data", data));
