@@ -1,6 +1,6 @@
 # webterm
 
-Because I wanted a terminal app that didn't sing nor dance.
+Because I wanted a terminal app neither sang nor danced.
 
 ## Building
 
