@@ -30,7 +30,7 @@
     "typescript": "~5.2.2"
   },
   "dependencies": {
-    "node-pty": "^1.0.0",
+    "node-pty": "file:vendor/node-pty",
     "xterm": "^5.2.1",
     "xterm-addon-fit": "^0.7.0"
   }
