@@ -1,14 +1,15 @@
 body {
   background-color: black;
-  height: 100dvh;
+  box-sizing: border-box;
+  height: 100vh;
   margin: 0px;
-  width: 100dvw;
+  padding: 8px;
+  width: 100vw;
 }
 
 div#terminal {
-  height: calc(100% - 16px);
-  margin: 8px;
-  width: calc(100% - 16px);
+  height: 100%;
+  width: 100%;
 }
 
 div#terminal[disabled="true"] {
