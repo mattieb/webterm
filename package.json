@@ -1,15 +1,15 @@
 {
   "name": "webterm",
   "productName": "webterm",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "a terminal app that neither sings nor dances",
   "main": ".vite/build/main.js",
   "scripts": {
+    "lint": "eslint --ext .ts,.tsx .",
+    "make": "electron-forge make",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts,.tsx ."
+    "publish": "electron-forge publish"
   },
   "keywords": [],
   "author": {
@@ -18,7 +18,9 @@
   },
   "license": "MIT",
   "prettier": {
-    "plugins": ["@trivago/prettier-plugin-sort-imports"]
+    "plugins": [
+      "@trivago/prettier-plugin-sort-imports"
+    ]
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.4.1",

@@ -1,18 +1,13 @@
-import type { ForgeConfig } from "@electron-forge/shared-types";
 import { MakerZIP } from "@electron-forge/maker-zip";
 import { VitePlugin } from "@electron-forge/plugin-vite";
+import type { ForgeConfig } from "@electron-forge/shared-types";
 
 const config: ForgeConfig = {
   packagerConfig: {
     icon: "icon/webterm",
   },
   rebuildConfig: {},
-  makers: [
-    // new MakerSquirrel({}),
-    // new MakerRpm({}),
-    // new MakerDeb({}),
-    new MakerZIP({}, ["darwin"]), // only making macOS builds for now
-  ],
+  makers: [new MakerZIP({}, ["darwin"])],
   plugins: [
     new VitePlugin({
       build: [

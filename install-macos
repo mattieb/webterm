@@ -1,0 +1,7 @@
+#!/bin/sh
+
+set -ex
+
+npm run make
+rm -rf "${HOME}/Applications/webterm.app"
+mv out/webterm-darwin-*/webterm.app "${HOME}/Applications/"
