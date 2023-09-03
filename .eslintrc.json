@@ -12,5 +12,8 @@
     "plugin:import/electron",
     "plugin:import/typescript"
   ],
+  "ignorePatterns": [
+    "**/vendor/**/*"
+  ],
   "parser": "@typescript-eslint/parser"
 }
