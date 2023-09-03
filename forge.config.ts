@@ -4,7 +4,7 @@ import { VitePlugin } from "@electron-forge/plugin-vite";
 
 const config: ForgeConfig = {
   packagerConfig: {
-    icon: "webterm",
+    icon: "icon/webterm",
   },
   rebuildConfig: {},
   makers: [
