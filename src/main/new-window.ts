@@ -20,10 +20,10 @@ export const newWindow = () => {
     );
   }
 
-  window.webContents.on("dom-ready", () => {
+  window.webContents.on("dom-ready", async () => {
     window.show();
 
-    const shellConfig = getShellConfig();
+    const shellConfig = await getShellConfig();
     const pty = spawn(shellConfig.file, [], {
       argv0: shellConfig.argv0,
       cwd: process.env.HOME ?? "/",

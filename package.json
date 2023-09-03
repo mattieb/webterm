@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "node-pty": "github:mattieb/node-pty#add-argv0-support",
+    "os-locale": "^6.0.2",
     "xterm": "^5.2.1",
     "xterm-addon-fit": "^0.7.0"
   }

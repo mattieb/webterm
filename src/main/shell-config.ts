@@ -1,10 +1,12 @@
-import { app } from "electron";
 import { basename } from "node:path";
+import { osLocale } from "os-locale";
 
-export const getShellConfig = () => {
+const locale = async () => (await osLocale()).replace("-", "_");
+
+export const getShellConfig = async () => {
   const file = process.env.SHELL ?? "/bin/sh";
   const argv0 = `-${basename(file)}`;
-  const env = { LANG: `${app.getLocale()}.UTF-8` };
+  const env = { LANG: `${await locale()}.UTF-8` };
 
   return { file, argv0, env };
 };
