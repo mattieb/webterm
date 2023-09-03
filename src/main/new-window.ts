@@ -1,8 +1,8 @@
-import { BrowserWindow } from "electron";
-import path from "node:path";
-import { storePty } from "./ptys";
-import { spawn } from "node-pty";
+import { TerminalDimensions } from "../common/types";
 import { getShellConfig } from "./shell-config";
+import { BrowserWindow } from "electron";
+import { spawn } from "node-pty";
+import path from "node:path";
 
 export const newWindow = () => {
   const window = new BrowserWindow({
@@ -16,7 +16,7 @@ export const newWindow = () => {
     window.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
   } else {
     window.loadFile(
-      path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`)
+      path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`),
     );
   }
 
@@ -32,9 +32,26 @@ export const newWindow = () => {
     });
 
     pty.onData((data) => window.webContents.send("data", data));
-    pty.onExit(() => window.webContents.send("exit"));
+    pty.onExit(() => {
+      console.info(`pid ${pty.pid}: exited`);
+      window.webContents.send("exit");
+    });
 
-    storePty(window.webContents, pty);
+    window.webContents.ipc.on(
+      "resize",
+      (_, { cols, rows }: TerminalDimensions) => {
+        pty.resize(cols, rows);
+      },
+    );
+
+    window.webContents.ipc.on("data", (_, data: string) => {
+      pty.write(data);
+    });
+
+    window.on("close", () => {
+      console.info(`pid ${pty.pid}: killing due to window close`);
+      pty.kill();
+    });
 
     window.webContents.send("ready");
   });
