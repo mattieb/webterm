@@ -18,6 +18,7 @@ export const buildApplicationMenu = (createWindow: () => void) =>
           ]
         : [{ role: "quit" }],
     },
+    { role: "editMenu" },
     { role: "viewMenu" },
     { role: "windowMenu" },
   ]);
