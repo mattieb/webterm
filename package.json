@@ -17,15 +17,20 @@
     "email": "mattie@zigg.com"
   },
   "license": "MIT",
+  "prettier": {
+    "plugins": ["@trivago/prettier-plugin-sort-imports"]
+  },
   "devDependencies": {
     "@electron-forge/cli": "^6.4.1",
     "@electron-forge/maker-zip": "^6.4.1",
     "@electron-forge/plugin-vite": "^6.4.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "@typescript-eslint/parser": "^6.5.0",
     "electron": "26.1.0",
     "eslint": "^8.48.0",
     "eslint-plugin-import": "^2.28.1",
+    "prettier": "^3.0.3",
     "ts-node": "^10.9.1",
     "typescript": "~5.2.2"
   },
