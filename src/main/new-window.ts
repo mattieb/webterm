@@ -10,6 +10,7 @@ export const newWindow = () => {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
+    width: 1092, height: 732
   });
 
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
