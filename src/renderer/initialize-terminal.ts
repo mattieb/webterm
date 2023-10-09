@@ -6,6 +6,7 @@ import { FitAddon } from "xterm-addon-fit";
 const terminalOptions: ITerminalOptions = {
   fontFamily: "SF Mono",
   fontSize: 13,
+  minimumContrastRatio: 7, // WCAG AAA
 };
 
 export const initializeTerminal = (terminalElement: HTMLElement) => {
