@@ -1,5 +1,19 @@
 {
+  "scripts": {
+    "clean": "rimraf node_modules */node_modules core/lib",
+    "watch": "tsx watch.ts"
+  },
   "workspaces": [
-    "app"
-  ]
+    "app",
+    "core"
+  ],
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "tsx": "^3.13.0",
+    "turbo": "^1.10.15",
+    "turbowatch": "^2.29.4",
+    "type-fest": "^4.4.0",
+    "workspace-tools": "^0.35.2",
+    "zx": "^7.2.3"
+  }
 }

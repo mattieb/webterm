@@ -1,8 +1,8 @@
-import { TerminalDimensions } from "../common/types";
+import { buildBrowserWindowDispatcher } from "./browser-window-dispatcher";
 import { getShellConfig } from "./shell-config";
 import { BrowserWindow } from "electron";
-import { spawn } from "node-pty";
 import path from "node:path";
+import { buildTerminalBridge, newSession } from "webterm-core";
 
 export const newWindow = () => {
   const window = new BrowserWindow({
@@ -10,7 +10,8 @@ export const newWindow = () => {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
-    width: 1092, height: 732
+    width: 1092,
+    height: 732,
   });
 
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
@@ -23,37 +24,20 @@ export const newWindow = () => {
 
   window.webContents.on("dom-ready", async () => {
     window.show();
-
+    const dispatcher = buildBrowserWindowDispatcher(window);
+    const terminal = buildTerminalBridge(dispatcher);
     const shellConfig = await getShellConfig();
-    const pty = spawn(shellConfig.file, [], {
-      argv0: shellConfig.argv0,
-      cwd: process.env.HOME ?? "/",
-      env: { ...process.env, ...shellConfig.env },
-      name: "xterm-256color",
-    });
-
-    pty.onData((data) => window.webContents.send("data", data));
-    pty.onExit(() => {
-      console.info(`pid ${pty.pid}: exited`);
-      window.webContents.send("exit");
-    });
-
-    window.webContents.ipc.on(
-      "resize",
-      (_, { cols, rows }: TerminalDimensions) => {
-        pty.resize(cols, rows);
+    newSession(
+      terminal,
+      shellConfig.file,
+      [],
+      {
+        argv0: shellConfig.argv0,
+        cwd: process.env.HOME ?? "/",
+        env: { ...process.env, ...shellConfig.env },
+        name: "xterm-256color",
       },
+      console.info,
     );
-
-    window.webContents.ipc.on("data", (_, data: string) => {
-      pty.write(data);
-    });
-
-    window.on("close", () => {
-      console.info(`pid ${pty.pid}: killing due to window close`);
-      pty.kill();
-    });
-
-    window.webContents.send("ready");
   });
 };
