@@ -40,7 +40,7 @@ wsApp.ws("/pty", (ws) => {
   terminal.onInput(pty.write.bind(pty));
   terminal.onResize(pty.resize.bind(pty));
   terminal.onClose(() => {
-    console.info("pid %d: killing due to window close");
+    console.info("pid %d: killing due to window close", pty.pid);
     pty.kill();
   });
   terminal.ready();
