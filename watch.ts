@@ -75,7 +75,12 @@ const main = async () => {
       "allof",
       ["not", ["anyof", ["dirname", "node_modules"], ["dirname", "lib"]]],
       ["dirname", path.join(relativePaths[name], "src")],
-      ["match", "*.ts", "basename"],
+      [
+        "anyof",
+        ["match", "*.ts", "basename"],
+        ["match", "*.css", "basename"],
+        ["match", "*.html", "basename"],
+      ],
     ],
     name: `${name}:build`,
     initialRun: false,
