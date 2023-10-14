@@ -16,7 +16,7 @@ export const newSession = async (
   pty.onData(terminal.output);
   const onExit = pty.onExit(() => {
     logInfo("pid %d: exited", pty.pid);
-    terminal.exit();
+    terminal.close();
     onExit.dispose();
   });
   terminal.onInput(pty.write.bind(pty));

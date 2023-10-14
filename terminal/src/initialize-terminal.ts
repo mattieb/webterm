@@ -33,7 +33,7 @@ export const initializeTerminal = async (
 
   terminal.onTitleChange((title) => (document.title = title));
 
-  pty.onExit(() => disable(terminalElement));
+  pty.onClose(() => disable(terminalElement));
 
   pty.onReady(() => {
     console.log("ready");

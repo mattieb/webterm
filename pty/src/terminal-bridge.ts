@@ -1,7 +1,7 @@
 import { IDispatcher, partial } from "webterm-core";
 
 export interface ITerminalBridge {
-  exit: () => void;
+  close: () => void;
   onClose: (listener: () => void) => void;
   onInput: (listener: (input: string) => void) => void;
   onResize: (listener: (columns: number, rows: number) => void) => void;
@@ -12,7 +12,7 @@ export interface ITerminalBridge {
 export const buildTerminalBridge = (
   dispatcher: IDispatcher
 ): ITerminalBridge => ({
-  exit: partial(dispatcher.send, "exit"),
+  close: partial(dispatcher.send, "close"),
   onClose: partial(dispatcher.on, "close"),
   onInput: partial(dispatcher.on, "input"),
   onResize: partial(dispatcher.on, "resize"),

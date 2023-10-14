@@ -30,31 +30,28 @@ export const buildWebSocketDispatcher = (
     webSocket.send(message);
   };
 
+  const broadcast = (channel: string, ...args: any[]) => {
+    const listeners = listenerMap.get(channel) ?? [];
+    for (const listener of listeners) {
+      try {
+        listener(...args);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   webSocket.addEventListener("message", (event) => {
     const message = JSON.parse(event.data.toString());
     if (!Array.isArray(message)) throw new TypeError("message is not array");
     const channel = message[0];
     if (typeof channel !== "string")
       throw new TypeError("channel is not string");
-    const listeners = listenerMap.get(channel) ?? [];
-    for (const listener of listeners) {
-      try {
-        listener(...message.slice(1));
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    broadcast(channel, ...message.slice(1));
   });
 
   webSocket.addEventListener("close", () => {
-    const listeners = listenerMap.get("close") ?? [];
-    for (const listener of listeners) {
-      try {
-        listener();
-      } catch (error) {
-        console.error(error);
-      }
-    }
+    broadcast("close");
   });
 
   return { on, send };

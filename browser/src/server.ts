@@ -24,8 +24,6 @@ const server = https.createServer(
 const wsApp = expressWs(app, server).app;
 
 wsApp.ws("/pty", (ws) => {
-  console.log("in pty");
-
   const terminal = buildTerminalBridge(buildWebSocketDispatcher(ws));
   const pty = spawn("/usr/bin/login", [], {
     name: "xterm-256color",
@@ -34,7 +32,7 @@ wsApp.ws("/pty", (ws) => {
   pty.onData(terminal.output);
   const onExit = pty.onExit(() => {
     console.info("pid %d: exited", pty.pid);
-    terminal.exit();
+    terminal.close();
     onExit.dispose();
   });
   terminal.onInput(pty.write.bind(pty));
