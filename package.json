@@ -1,7 +1,8 @@
 {
   "scripts": {
     "build": "turbo build",
-    "clean": "rimraf node_modules */node_modules browser/lib core/lib pty/lib terminal/lib && npm install",
+    "clean": "turbo clean",
+    "reinstall": "rimraf node_modules */node_modules && npm install",
     "watch": "tsx watch.ts"
   },
   "workspaces": [

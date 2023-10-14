@@ -3,7 +3,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
-    "server": "nodemon src/server.ts"
+    "clean": "rimraf dist lib",
+    "start": "nodemon src/server.ts"
   },
   "dependencies": {
     "express": "^4.18.2",
@@ -17,6 +18,7 @@
   "devDependencies": {
     "@types/express": "^4.17.19",
     "@types/express-ws": "^3.0.2",
+    "rimraf": "^5.0.5",
     "typescript": "^5.2.2"
   }
 }

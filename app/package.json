@@ -5,6 +5,7 @@
   "description": "a terminal app that neither sings nor dances",
   "main": ".vite/build/main.js",
   "scripts": {
+    "clean": "rimraf .vite",
     "lint": "eslint --ext .ts,.tsx .",
     "make": "electron-forge make",
     "start": "electron-forge start",
@@ -33,6 +34,7 @@
     "eslint": "^8.50.0",
     "eslint-plugin-import": "^2.28.1",
     "prettier": "^3.0.3",
+    "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
     "typescript": "~5.2.2"
   },

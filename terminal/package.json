@@ -4,10 +4,12 @@
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "clean": "rimraf lib"
   },
   "devDependencies": {
-    "@tsconfig/strictest": "^2.0.2"
+    "@tsconfig/strictest": "^2.0.2",
+    "rimraf": "^5.0.5"
   },
   "dependencies": {
     "webterm-core": "*",
