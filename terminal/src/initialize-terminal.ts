@@ -1,35 +1,42 @@
-import { disable, enable } from "./html-disable";
-import { buildResizeHandler } from "./resize-handler";
 import { ITerminalOptions, Terminal } from "xterm";
+import { IPtyBridge } from "./pty-bridge.js";
+import { disable, enable } from "./html-disable.js";
+import { buildResizeHandler } from "./resize-handler.js";
 import { FitAddon } from "xterm-addon-fit";
 
 const terminalOptions: ITerminalOptions = {
-  fontFamily: "SF Mono",
+  fontFamily: "SF Mono, ui-monospace",
   fontSize: 13,
   minimumContrastRatio: 7, // WCAG AAA
 };
 
-export const initializeTerminal = (terminalElement: HTMLElement) => {
+export const initializeTerminal = async (
+  terminalElement: HTMLElement,
+  pty: IPtyBridge
+) => {
   const terminal = new Terminal(terminalOptions);
   const fitAddon = new FitAddon();
+
   terminal.loadAddon(fitAddon);
   terminal.open(terminalElement);
 
-  terminal.onData(window.pty.input);
+  terminal.onData((input) => pty.input(input));
 
-  window.pty.onOutput((output) => {
+  pty.onOutput((output) => {
     enable(terminalElement);
     terminal.write(output);
+    false;
   });
 
-  const resize = buildResizeHandler(fitAddon, window.pty.resize);
+  const resize = buildResizeHandler(fitAddon, pty.resize);
   window.addEventListener("resize", resize);
 
   terminal.onTitleChange((title) => (document.title = title));
 
-  window.pty.onExit(() => disable(terminalElement));
+  pty.onExit(() => disable(terminalElement));
 
-  window.pty.onReady(() => {
+  pty.onReady(() => {
+    console.log("ready");
     resize();
     terminal.focus();
   });

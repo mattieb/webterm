@@ -6,13 +6,8 @@ import {
   createPackageGraph,
 } from "workspace-tools";
 import path from "node:path";
-import { IterableElement } from "type-fest";
-import { TurbowatchConfigurationInput } from "turbowatch/dist/types";
-
-/**
- * These packages have "start" targets to run in dev mode.
- */
-const DEV_PACKAGES = [];
+import type { IterableElement } from "type-fest";
+import type { TurbowatchConfigurationInput } from "turbowatch/dist/types";
 
 type TriggerInput = IterableElement<TurbowatchConfigurationInput["triggers"]>;
 
@@ -93,21 +88,10 @@ const main = async () => {
     },
   }));
 
-  //   const startTriggers: TriggerInput[] = DEV_PACKAGES.map((name) => ({
-  //     name: `${name}:start`,
-  //     expression: ["dirname", "lib"],
-  //     initialRun: true,
-  //     interruptible: true,
-  //     onChange: async ({ spawn }) => {
-  //       await spawn`yarn workspace ${name} start`;
-  //     },
-  //     persistent: true,
-  //   }));
-
   const filterFlags = boundMakeFilterFlags(allLeaves);
   await $`npx turbo build --output-logs=new-only ${filterFlags}`;
 
-  const triggers = buildTriggers; // .concat(startTriggers);
+  const triggers = buildTriggers;
 
   watch({ project, triggers });
 };

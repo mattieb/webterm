@@ -1,0 +1,6 @@
+# TypeScript output
+lib
+
+# Vite output
+dist
+

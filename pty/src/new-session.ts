@@ -1,4 +1,8 @@
-import { type IPtyForkOptions, type IWindowsPtyForkOptions } from "node-pty";
+import {
+  spawn,
+  type IPtyForkOptions,
+  type IWindowsPtyForkOptions,
+} from "node-pty";
 import { ITerminalBridge } from "./terminal-bridge.js";
 
 export const newSession = async (
@@ -8,8 +12,7 @@ export const newSession = async (
   spawnOptions: IPtyForkOptions | IWindowsPtyForkOptions,
   logInfo: (message: string, ...parameters: any[]) => void
 ) => {
-  const nodePty = await import("node-pty");
-  const pty = nodePty.spawn(spawnFile, spawnArgs, spawnOptions);
+  const pty = spawn(spawnFile, spawnArgs, spawnOptions);
   pty.onData(terminal.output);
   const onExit = pty.onExit(() => {
     logInfo("pid %d: exited", pty.pid);

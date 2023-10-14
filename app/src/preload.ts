@@ -1,5 +1,6 @@
 import { contextBridge, ipcRenderer } from "electron";
-import { IDispatcher, buildPtyBridge } from "webterm-core";
+import type { IDispatcher } from "webterm-core";
+import { buildPtyBridge } from "webterm-terminal";
 
 const buildIpcRendererDispatcher = (): IDispatcher => ({
   on: (channel: string, listener: (...args: any[]) => void) => {

@@ -2,7 +2,7 @@ import { buildBrowserWindowDispatcher } from "./browser-window-dispatcher";
 import { getShellConfig } from "./shell-config";
 import { BrowserWindow } from "electron";
 import path from "node:path";
-import { buildTerminalBridge, newSession } from "webterm-core";
+import { buildTerminalBridge, newSession } from "webterm-pty";
 
 export const newWindow = () => {
   const window = new BrowserWindow({

@@ -1,5 +1,4 @@
-import { IDispatcher } from "./dispatcher.js";
-import { partial } from "./partial.js";
+import { IDispatcher, partial } from "webterm-core";
 
 export interface IPtyBridge {
   close: () => void;

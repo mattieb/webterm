@@ -1,11 +1,14 @@
 {
   "scripts": {
-    "clean": "rimraf node_modules */node_modules core/lib",
+    "clean": "rimraf node_modules */node_modules browser/lib core/lib pty/lib terminal/lib && npm install",
     "watch": "tsx watch.ts"
   },
   "workspaces": [
     "app",
-    "core"
+    "browser",
+    "core",
+    "pty",
+    "terminal"
   ],
   "devDependencies": {
     "rimraf": "^5.0.5",

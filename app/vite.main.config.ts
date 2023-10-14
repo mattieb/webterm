@@ -6,7 +6,7 @@ export default defineConfig({
     rollupOptions: {
       external: ["node-pty"],
     },
-    sourcemap: true,
+    sourcemap: "inline",
   },
   resolve: {
     // Some libs that can run in both Web and Node.js, such as `axios`, we need to tell Vite to build them in Node.js.

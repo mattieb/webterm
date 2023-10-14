@@ -1,6 +1,5 @@
 import "./index.css";
-import { initializeTerminal } from "./renderer/initialize-terminal";
-import type { IPtyBridge } from "webterm-core";
+import { initializeTerminal, type IPtyBridge } from "webterm-terminal";
 import "xterm/css/xterm.css";
 
 declare global {
@@ -10,5 +9,5 @@ declare global {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  initializeTerminal(document.getElementById("terminal"));
+  initializeTerminal(document.getElementById("terminal"), window.pty);
 });
