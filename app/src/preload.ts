@@ -1,16 +1,17 @@
-import { TerminalDimensions } from "./common/types";
 import { contextBridge, ipcRenderer } from "electron";
+import { IDispatcher, buildPtyBridge } from "webterm-core";
 
-const api = {
-  onData: (handler: (data: string) => void) =>
-    ipcRenderer.on("output", (_, data) => handler(data)),
-  onExit: (handler: () => void) => ipcRenderer.on("exit", () => handler()),
-  onReady: (handler: () => void) => ipcRenderer.on("ready", () => handler()),
-  resize: (dimensions: TerminalDimensions) =>
-    ipcRenderer.send("resize", dimensions.cols, dimensions.rows),
-  data: (data: string) => ipcRenderer.send("input", data),
-};
+const buildIpcRendererDispatcher = (): IDispatcher => ({
+  on: (channel: string, listener: (...args: any[]) => void) => {
+    ipcRenderer.on(channel, (_: any, ...args: any[]) => {
+      listener(...args);
+    });
+  },
 
-export type MainApi = typeof api;
+  send: (channel: string, ...args: any[]) => {
+    ipcRenderer.send(channel, ...args);
+  },
+});
 
-contextBridge.exposeInMainWorld("main", api);
+const ptyBridge = buildPtyBridge(buildIpcRendererDispatcher());
+contextBridge.exposeInMainWorld("pty", ptyBridge);

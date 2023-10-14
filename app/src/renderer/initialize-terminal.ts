@@ -15,21 +15,21 @@ export const initializeTerminal = (terminalElement: HTMLElement) => {
   terminal.loadAddon(fitAddon);
   terminal.open(terminalElement);
 
-  terminal.onData(window.main.data);
+  terminal.onData(window.pty.input);
 
-  window.main.onData((data) => {
+  window.pty.onOutput((output) => {
     enable(terminalElement);
-    terminal.write(data);
+    terminal.write(output);
   });
 
-  const resize = buildResizeHandler(fitAddon, window.main.resize);
+  const resize = buildResizeHandler(fitAddon, window.pty.resize);
   window.addEventListener("resize", resize);
 
   terminal.onTitleChange((title) => (document.title = title));
 
-  window.main.onExit(() => disable(terminalElement));
+  window.pty.onExit(() => disable(terminalElement));
 
-  window.main.onReady(() => {
+  window.pty.onReady(() => {
     resize();
     terminal.focus();
   });

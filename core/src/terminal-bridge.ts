@@ -2,21 +2,21 @@ import { IDispatcher } from "./dispatcher.js";
 import { partial } from "./partial.js";
 
 export interface ITerminalBridge {
-  output: (output: string) => void;
   exit: () => void;
-  ready: () => void;
+  onClose: (listener: () => void) => void;
   onInput: (listener: (input: string) => void) => void;
   onResize: (listener: (columns: number, rows: number) => void) => void;
-  onClose: (listener: () => void) => void;
+  output: (output: string) => void;
+  ready: () => void;
 }
 
 export const buildTerminalBridge = (
   dispatcher: IDispatcher
 ): ITerminalBridge => ({
-  output: partial(dispatcher.send, "output"),
   exit: partial(dispatcher.send, "exit"),
-  ready: partial(dispatcher.send, "ready"),
+  onClose: partial(dispatcher.on, "close"),
   onInput: partial(dispatcher.on, "input"),
   onResize: partial(dispatcher.on, "resize"),
-  onClose: partial(dispatcher.on, "close"),
+  output: partial(dispatcher.send, "output"),
+  ready: partial(dispatcher.send, "ready"),
 });

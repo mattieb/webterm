@@ -1,4 +1,4 @@
-import { BrowserWindow, WebContents } from "electron";
+import { BrowserWindow } from "electron";
 import { IDispatcher } from "webterm-core";
 
 export const buildBrowserWindowDispatcher = (
@@ -13,6 +13,7 @@ export const buildBrowserWindowDispatcher = (
       listener(...args);
     });
   },
+
   send: (channel: string, ...args: any[]) => {
     window.webContents.send(channel, ...args);
   },
