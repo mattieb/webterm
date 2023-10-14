@@ -36,8 +36,7 @@ export const buildWebSocketDispatcher = (
     const channel = message[0];
     if (typeof channel !== "string")
       throw new TypeError("channel is not string");
-    const listeners = listenerMap.get(channel);
-    if (typeof listeners === "undefined") return;
+    const listeners = listenerMap.get(channel) ?? [];
     for (const listener of listeners) {
       try {
         listener(...message.slice(1));
@@ -48,8 +47,7 @@ export const buildWebSocketDispatcher = (
   });
 
   webSocket.addEventListener("close", () => {
-    const listeners = listenerMap.get("close");
-    if (typeof listeners === "undefined") return;
+    const listeners = listenerMap.get("close") ?? [];
     for (const listener of listeners) {
       try {
         listener();
