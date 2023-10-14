@@ -2,8 +2,7 @@
   "name": "webterm-browser",
   "type": "module",
   "scripts": {
-    "watch": "vite build -w",
-    "build": "tsc",
+    "build": "tsc && vite build",
     "server": "nodemon src/server.ts"
   },
   "dependencies": {
