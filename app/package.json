@@ -1,11 +1,11 @@
 {
   "name": "webterm-app",
   "productName": "webterm",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "a terminal app that neither sings nor dances",
   "main": ".vite/build/main.js",
   "scripts": {
-    "clean": "rimraf .vite",
+    "clean": "rimraf .vite out",
     "lint": "eslint --ext .ts,.tsx .",
     "make": "electron-forge make",
     "start": "electron-forge start",
@@ -30,7 +30,7 @@
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
     "@typescript-eslint/parser": "^6.7.3",
-    "electron": "^26.2.4",
+    "electron": "^27.0.0",
     "eslint": "^8.50.0",
     "eslint-plugin-import": "^2.28.1",
     "prettier": "^3.0.3",

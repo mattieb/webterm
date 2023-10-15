@@ -1,6 +1,7 @@
 import { MakerZIP } from "@electron-forge/maker-zip";
 import { VitePlugin } from "@electron-forge/plugin-vite";
 import type { ForgeConfig } from "@electron-forge/shared-types";
+import { cp, rm } from "node:fs/promises";
 
 const config: ForgeConfig = {
   packagerConfig: {
@@ -28,6 +29,18 @@ const config: ForgeConfig = {
       ],
     }),
   ],
+  hooks: {
+    prePackage: async (config, packageResult) => {
+      // packaging looks for dependencies in local node_modules
+      try {
+        await rm("./node_modules", { recursive: true });
+      } catch {}
+      await cp("../node_modules", "./node_modules", {
+        recursive: true,
+        force: false,
+      });
+    },
+  },
 };
 
 export default config;
