@@ -1,8 +1,42 @@
 import { buildBrowserWindowDispatcher } from "./browser-window-dispatcher";
 import { getShellConfig } from "./shell-config";
-import { BrowserWindow } from "electron";
+import { BrowserWindow, screen, webContents } from "electron";
 import path from "node:path";
+import { isNull, isUndefined } from "webterm-core";
 import { buildTerminalBridge, newSession } from "webterm-pty";
+
+const getDisplayOffset = () => {
+  const cursor = screen.getCursorScreenPoint();
+  const currentDisplay = screen.getDisplayNearestPoint(cursor);
+  return {
+    x: currentDisplay.bounds.x,
+    y: currentDisplay.bounds.y,
+  };
+};
+
+const getCurrentWindowBounds = () => {
+  const current = webContents.getFocusedWebContents();
+  if (isNull(current)) return;
+  const window = BrowserWindow.fromWebContents(current);
+  return window.getBounds();
+};
+
+const newWindowGeometry = () => {
+  const currentBounds = getCurrentWindowBounds();
+  if (isUndefined(currentBounds)) {
+    return {
+      ...getDisplayOffset(),
+      width: 1092,
+      height: 732,
+    };
+  }
+  return {
+    x: currentBounds.x + 29,
+    y: currentBounds.y + 29,
+    width: currentBounds.width,
+    height: currentBounds.height,
+  };
+};
 
 export const newWindow = () => {
   const window = new BrowserWindow({
@@ -10,8 +44,7 @@ export const newWindow = () => {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
-    width: 1092,
-    height: 732,
+    ...newWindowGeometry(),
   });
 
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
