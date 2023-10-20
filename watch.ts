@@ -8,6 +8,7 @@ import {
 import path from "node:path";
 import type { IterableElement } from "type-fest";
 import type { TurbowatchConfigurationInput } from "turbowatch/dist/types";
+import supportsColor from "supports-color";
 
 type TriggerInput = IterableElement<TurbowatchConfigurationInput["triggers"]>;
 
@@ -41,6 +42,10 @@ const makeFilterFlags = (
 ) => leaves.map((l) => `--filter=./${relativePaths[l]}`);
 
 const main = async () => {
+  if (supportsColor.stdout) {
+    $.env["FORCE_COLOR"] = "1";
+  }
+
   const project = defined(getWorkspaceRoot(path.dirname(__filename)));
   const packageInfos = getPackageInfos(project);
   const packageGraph = createPackageGraph(packageInfos);
