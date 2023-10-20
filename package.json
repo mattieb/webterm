@@ -2,6 +2,7 @@
   "scripts": {
     "build": "turbo build",
     "clean": "turbo clean",
+    "distclean": "turbo clean && rimraf .turbo */.turbo node_modules */node_modules",
     "reinstall": "rimraf node_modules */node_modules && npm install",
     "watch": "tsx watch.ts"
   },
