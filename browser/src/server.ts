@@ -3,8 +3,8 @@ import expressWs from "express-ws";
 import { spawn } from "node-pty";
 import fs from "node:fs";
 import https from "node:https";
-import { buildWebSocketDispatcher } from "./websocket-dispatcher.js";
 import { buildTerminalBridge } from "webterm-pty";
+import { buildWebSocketDispatcher } from "./websocket-dispatcher.js";
 
 const app = express();
 
@@ -18,7 +18,7 @@ const server = https.createServer(
     key,
     cert,
   },
-  app
+  app,
 );
 
 const wsApp = expressWs(app, server).app;

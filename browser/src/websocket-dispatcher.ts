@@ -9,14 +9,14 @@ interface IWebSocketMessageEvent {
 interface IWebSocket {
   addEventListener(
     channel: "message",
-    listener: (event: IWebSocketMessageEvent) => void
+    listener: (event: IWebSocketMessageEvent) => void,
   ): void;
   addEventListener(channel: "close", listener: () => void): void;
   send(data: string): void;
 }
 
 export const buildWebSocketDispatcher = (
-  webSocket: IWebSocket
+  webSocket: IWebSocket,
 ): IDispatcher => {
   const listenerMap: Map<string, readonly Listener[]> = new Map();
 

@@ -1,9 +1,8 @@
-import "./index.css";
-import "./index.css";
-import "xterm/css/xterm.css";
-import { buildWebSocketDispatcher } from "./websocket-dispatcher.js";
-import { buildPtyBridge, initializeTerminal } from "webterm-terminal";
 import { isNull } from "webterm-core";
+import { buildPtyBridge, initializeTerminal } from "webterm-terminal";
+import "xterm/css/xterm.css";
+import "./index.css";
+import { buildWebSocketDispatcher } from "./websocket-dispatcher.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const webSocket = new WebSocket(`wss://${location.host}/pty`);

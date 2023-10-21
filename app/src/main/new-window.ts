@@ -1,9 +1,9 @@
-import { buildBrowserWindowDispatcher } from "./browser-window-dispatcher";
-import { getShellConfig } from "./shell-config";
 import { BrowserWindow, screen, webContents } from "electron";
 import path from "node:path";
 import { isNull, isUndefined } from "webterm-core";
 import { buildTerminalBridge, newSession } from "webterm-pty";
+import { buildBrowserWindowDispatcher } from "./browser-window-dispatcher";
+import { getShellConfig } from "./shell-config";
 
 const getDisplayOffset = () => {
   const cursor = screen.getCursorScreenPoint();

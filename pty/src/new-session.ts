@@ -10,7 +10,7 @@ export const newSession = async (
   spawnFile: string,
   spawnArgs: string[],
   spawnOptions: IPtyForkOptions | IWindowsPtyForkOptions,
-  logInfo: (message: string, ...parameters: any[]) => void
+  logInfo: (message: string, ...parameters: any[]) => void,
 ) => {
   const pty = spawn(spawnFile, spawnArgs, spawnOptions);
   pty.onData(terminal.output);

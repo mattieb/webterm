@@ -1,8 +1,8 @@
 import { ITerminalOptions, Terminal } from "xterm";
-import { IPtyBridge } from "./pty-bridge.js";
-import { disable, enable } from "./html-disable.js";
-import { buildResizeHandler } from "./resize-handler.js";
 import { FitAddon } from "xterm-addon-fit";
+import { disable, enable } from "./html-disable.js";
+import { IPtyBridge } from "./pty-bridge.js";
+import { buildResizeHandler } from "./resize-handler.js";
 
 const terminalOptions: ITerminalOptions = {
   fontFamily: "SF Mono, ui-monospace",
@@ -12,7 +12,7 @@ const terminalOptions: ITerminalOptions = {
 
 export const initializeTerminal = async (
   terminalElement: HTMLElement,
-  pty: IPtyBridge
+  pty: IPtyBridge,
 ) => {
   const terminal = new Terminal(terminalOptions);
   const fitAddon = new FitAddon();

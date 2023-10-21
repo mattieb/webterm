@@ -10,7 +10,7 @@ export interface ITerminalBridge {
 }
 
 export const buildTerminalBridge = (
-  dispatcher: IDispatcher
+  dispatcher: IDispatcher,
 ): ITerminalBridge => ({
   close: partial(dispatcher.send, "close"),
   onClose: partial(dispatcher.on, "close"),

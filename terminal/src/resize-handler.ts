@@ -1,6 +1,6 @@
+import { isUndefined } from "webterm-core";
 import { FitAddon } from "xterm-addon-fit";
 import { IPtyBridge } from "./pty-bridge.js";
-import { isUndefined } from "webterm-core";
 
 export const buildResizeHandler =
   (fitAddon: FitAddon, ptyResizeListener: IPtyBridge["resize"]) => () => {
