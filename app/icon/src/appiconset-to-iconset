@@ -5,11 +5,9 @@ appiconset="${name}.appiconset"
 iconset="${name}.iconset"
 
 mkdir "${iconset}"
-for size in 16 32 128 256 512
-do
-	cp "${appiconset}/mac${size}pt1x.png" "${iconset}/icon_${size}x${size}.png"
-	cp "${appiconset}/mac${size}pt2x.png" "${iconset}/icon_${size}x${size}@2x.png"
+for size in 16 32 128 256 512; do
+  cp "${appiconset}/mac${size}pt1x.png" "${iconset}/icon_${size}x${size}.png"
+  cp "${appiconset}/mac${size}pt2x.png" "${iconset}/icon_${size}x${size}@2x.png"
 done
 
 iconutil -c icns "${iconset}"
-
