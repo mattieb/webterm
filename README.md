@@ -18,7 +18,7 @@ npm install
 npm run build
 ```
 
-To develop, use the [Turbowatch](https://github.com/gajus/turbowatch)-based watcher, which will watch and keep up-to-date both libraries and the browser web app:
+To develop, use the [turbotree](https://github.com/mattieb/turbotree)-based watcher, which will watch and keep up-to-date both libraries and the browser web app, including starting and restarting the server when needed:
 
 ```shell
 npm run watch
