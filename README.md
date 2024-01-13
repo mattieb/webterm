@@ -44,6 +44,8 @@ npm run make
 
 Universal builds do not work due to packaging problems.
 
+There is also an issue with electron-forge and NPM workspaces that is not yet resolved. electron-forge is configured to copy packages from the monorepo root node_modules to work around this, but this breaks "npm start" due to issues not finding the Electron framework. Running "npm install" again will repair this temporarily.
+
 ### Using the browser app
 
 The browser app has its own [Express](https://expressjs.com) server that uses [express-ws](https://github.com/HenningM/express-ws) for WebSocket communication.
