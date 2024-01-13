@@ -5,13 +5,21 @@ import { buildTerminalBridge, newSession } from "webterm-pty";
 import { buildBrowserWindowDispatcher } from "./browser-window-dispatcher";
 import { getShellConfig } from "./shell-config";
 
-const getDisplayOffset = () => {
+const getInitialPosition = () => {
   const cursor = screen.getCursorScreenPoint();
   const currentDisplay = screen.getDisplayNearestPoint(cursor);
-  return {
-    x: currentDisplay.bounds.x,
-    y: currentDisplay.bounds.y,
-  };
+
+  const x = Math.round(
+    currentDisplay.bounds.x +
+      currentDisplay.workArea.width / 2 -
+      INITIAL_SIZE.width / 2,
+  );
+  const y = Math.round(
+    currentDisplay.bounds.y +
+      currentDisplay.workArea.height / 2 -
+      INITIAL_SIZE.height / 2,
+  );
+  return { x, y };
 };
 
 const getCurrentWindowBounds = () => {
@@ -21,15 +29,21 @@ const getCurrentWindowBounds = () => {
   return window.getBounds();
 };
 
+const INITIAL_SIZE: Readonly<{ width: number; height: number }> = {
+  width: 1092,
+  height: 732,
+};
+
 const newWindowGeometry = () => {
   const currentBounds = getCurrentWindowBounds();
+
   if (isUndefined(currentBounds)) {
     return {
-      ...getDisplayOffset(),
-      width: 1092,
-      height: 732,
+      ...getInitialPosition(),
+      ...INITIAL_SIZE,
     };
   }
+
   return {
     x: currentBounds.x + 29,
     y: currentBounds.y + 29,
