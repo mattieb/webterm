@@ -24,7 +24,7 @@
     "electron": "^27.2.2",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.2",
-    "typescript": "~5.2.2"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "os-locale": "^6.0.2",
