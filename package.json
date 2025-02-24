@@ -20,15 +20,16 @@
     ]
   },
   "devDependencies": {
-    "@tsconfig/strictest": "^2.0.2",
-    "prettier": "^3.2.1",
-    "prettier-plugin-organize-imports": "^3.2.4",
-    "prettier-plugin-sh": "^0.13.1",
-    "rimraf": "^5.0.5",
-    "tsx": "^4.7.0",
-    "turbo": "^1.11.3"
+    "@tsconfig/strictest": "^2.0.5",
+    "prettier": "^3.5.2",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-sh": "^0.15.0",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.3",
+    "turbo": "^2.4.2"
   },
   "dependencies": {
     "turbotree": "^1.0.1"
-  }
+  },
+  "packageManager": "npm@10.8.2"
 }
