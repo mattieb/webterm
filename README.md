@@ -15,8 +15,6 @@ npm run build
 
 ## Using the Electron app
 
-The Electron app is a pretty standard [Electron Forge](https://www.electronforge.io) setup.
-
 In the [app](./app) directory:
 
 ```shell
@@ -30,3 +28,4 @@ A standalone app can be built:
 ```shell
 npm run build:app
 ```
+
