@@ -1,7 +1,0 @@
-#!/bin/sh
-
-set -ex
-
-npm run package
-rm -rf "${HOME}/Applications/webterm.app"
-mv out/webterm-darwin-*/webterm.app "${HOME}/Applications/"
