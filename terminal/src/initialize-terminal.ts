@@ -1,5 +1,5 @@
-import { ITerminalOptions, Terminal } from "xterm";
-import { FitAddon } from "xterm-addon-fit";
+import { FitAddon } from "@xterm/addon-fit";
+import { ITerminalOptions, Terminal } from "@xterm/xterm";
 import { disable, enable } from "./html-disable.js";
 import { IPtyBridge } from "./pty-bridge.js";
 import { buildResizeHandler } from "./resize-handler.js";

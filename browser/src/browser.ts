@@ -1,6 +1,6 @@
+import "@xterm/xterm/css/xterm.css";
 import { isNull } from "webterm-core";
 import { buildPtyBridge, initializeTerminal } from "webterm-terminal";
-import "xterm/css/xterm.css";
 import "./index.css";
 import { buildWebSocketDispatcher } from "./websocket-dispatcher.js";
 

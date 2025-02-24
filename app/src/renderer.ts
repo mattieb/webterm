@@ -1,5 +1,5 @@
+import "@xterm/xterm/css/xterm.css";
 import { initializeTerminal, type IPtyBridge } from "webterm-terminal";
-import "xterm/css/xterm.css";
 import "./index.css";
 
 declare global {

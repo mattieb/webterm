@@ -1,5 +1,5 @@
+import { FitAddon } from "@xterm/addon-fit";
 import { isUndefined } from "webterm-core";
-import { FitAddon } from "xterm-addon-fit";
 import { IPtyBridge } from "./pty-bridge.js";
 
 export const buildResizeHandler =
