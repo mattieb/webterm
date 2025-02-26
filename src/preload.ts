@@ -1,6 +1,4 @@
-// current version of Electron has a require function exposing modules, but import is broken
-const { contextBridge, ipcRenderer } = require("electron");
-
+import { contextBridge, ipcRenderer } from "electron";
 import type { IDispatcher } from "./dispatcher.js";
 import { buildPtyBridge } from "./pty-bridge.js";
 
@@ -17,7 +15,4 @@ const buildIpcRendererDispatcher = (): IDispatcher => ({
 });
 
 const ptyBridge = buildPtyBridge(buildIpcRendererDispatcher());
-
-console.log("preload exposing");
-
 contextBridge.exposeInMainWorld("pty", ptyBridge);

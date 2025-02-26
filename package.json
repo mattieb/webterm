@@ -8,7 +8,7 @@
     "appId": "io.mattiebee.webterm"
   },
   "scripts": {
-    "build": "tsc && esbuild lib/renderer.js --bundle --format=esm --outfile=app/renderer.js && esbuild lib/preload.js --bundle --format=esm --platform=node --packages=external --outfile=app/preload.js && esbuild lib/main.js --bundle --format=esm --platform=node --packages=external --outfile=app/main.js && esbuild src/index.css --bundle --outfile=app/index.css && cp src/index.html app",
+    "build": "node build.js",
     "build:app": "electron-builder",
     "start": "electron ."
   },
