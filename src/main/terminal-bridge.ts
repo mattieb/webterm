@@ -1,5 +1,5 @@
-import { IDispatcher } from "./dispatcher.js";
-import { partial } from "./partial.js";
+import { IDispatcher } from "../shared/dispatcher.js";
+import { partial } from "../shared/partial.js";
 
 export interface ITerminalBridge {
   close: () => void;

@@ -1,6 +1,6 @@
-import { IPtyBridge } from "./pty-bridge.js";
+import { IPtyBridge } from "../preload/pty-bridge.js";
 import { initializeTerminal } from "./initialize-terminal.js";
-import { isNull } from "./is-null.js";
+import { isNull } from "../shared/is-null.js";
 
 declare global {
   interface Window {

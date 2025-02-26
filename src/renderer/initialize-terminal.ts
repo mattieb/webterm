@@ -1,7 +1,7 @@
 import { FitAddon } from "@xterm/addon-fit";
 import { ITerminalOptions, Terminal } from "@xterm/xterm";
 import { disable, enable } from "./html-disable.js";
-import { IPtyBridge } from "./pty-bridge.js";
+import { IPtyBridge } from "../preload/pty-bridge.js";
 import { buildResizeHandler } from "./resize-handler.js";
 
 const terminalOptions: ITerminalOptions = {
@@ -16,7 +16,7 @@ export const initializeTerminal = async (
 ) => {
   const terminal = new Terminal(terminalOptions);
   const fitAddon = new FitAddon();
-
+  
   terminal.loadAddon(fitAddon);
   terminal.open(terminalElement);
 
@@ -32,7 +32,7 @@ export const initializeTerminal = async (
   window.addEventListener("resize", resize);
 
   terminal.onTitleChange((title) => (document.title = title));
-
+  
   pty.onClose(() => disable(terminalElement));
 
   pty.onReady(() => {

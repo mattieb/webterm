@@ -1,7 +1,7 @@
 import path, { basename } from "node:path";
 import { osLocale } from "os-locale";
 import fs from "node:fs/promises";
-import { isUndefined } from "./is-undefined.js";
+import { isUndefined } from "../shared/is-undefined.js";
 
 const POWERSHELL_PATHS = [
   { env: "ProgramFiles", path: ["PowerShell", "7", "pwsh.exe"] },

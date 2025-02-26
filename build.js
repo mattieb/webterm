@@ -17,13 +17,11 @@ function checkTypeScriptDiagnostics(diagnostics) {
   }
 }
 
-// Compile TypeScript files
 const configPath = ts.findConfigFile("./", ts.sys.fileExists, "tsconfig.json");
 if (typeof configPath == "undefined") {
   throw new Error("Could not find tsconfig.json");
 }
 
-// Parse tsconfig.json
 const { config } = ts.readConfigFile(configPath, ts.sys.readFile);
 const { options, fileNames, errors } = ts.parseJsonConfigFileContent(
   config,
@@ -31,27 +29,24 @@ const { options, fileNames, errors } = ts.parseJsonConfigFileContent(
   "./"
 );
 
-// Check for config parsing errors
 checkTypeScriptDiagnostics(errors);
 
-// Create and build the program
 const program = ts.createProgram(fileNames, options);
 const emitResult = program.emit();
 
-// Check for compilation errors
 checkTypeScriptDiagnostics(
   ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics)
 );
 
 await esbuild.build({
-  entryPoints: ["lib/renderer.js"],
+  entryPoints: ["lib/renderer/renderer.js"],
   bundle: true,
   format: "esm",
   outfile: "app/renderer.js",
 });
 
 await esbuild.build({
-  entryPoints: ["lib/preload.js"],
+  entryPoints: ["lib/preload/preload.js"],
   bundle: true,
   format: "cjs",
   platform: "node",
@@ -60,7 +55,7 @@ await esbuild.build({
 });
 
 await esbuild.build({
-  entryPoints: ["lib/main.js"],
+  entryPoints: ["lib/main/main.js"],
   bundle: true,
   format: "esm",
   platform: "node",

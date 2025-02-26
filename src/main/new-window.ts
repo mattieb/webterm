@@ -2,8 +2,8 @@ import { app, BrowserWindow, screen, webContents } from "electron";
 import path from "node:path";
 import { buildBrowserWindowDispatcher } from "./browser-window-dispatcher.js";
 import { getShellConfig } from "./shell-config.js";
-import { isNull } from "./is-null.js";
-import { isUndefined } from "./is-undefined.js";
+import { isNull } from "../shared/is-null.js";
+import { isUndefined } from "../shared/is-undefined.js";
 import { buildTerminalBridge } from "./terminal-bridge.js";
 import { newSession } from "./new-session.js";
 

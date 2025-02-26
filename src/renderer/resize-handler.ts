@@ -1,6 +1,6 @@
 import { FitAddon } from "@xterm/addon-fit";
-import { IPtyBridge } from "./pty-bridge.js";
-import { isUndefined } from "./is-undefined.js";
+import { IPtyBridge } from "../preload/pty-bridge.js";
+import { isUndefined } from "../shared/is-undefined.js";
 
 export const buildResizeHandler =
   (fitAddon: FitAddon, ptyResizeListener: IPtyBridge["resize"]) => () => {

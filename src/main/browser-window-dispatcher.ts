@@ -1,5 +1,5 @@
 import { BrowserWindow } from "electron";
-import { IDispatcher } from "./dispatcher.js";
+import { IDispatcher } from "../shared/dispatcher.js";
 
 export const buildBrowserWindowDispatcher = (
   window: BrowserWindow

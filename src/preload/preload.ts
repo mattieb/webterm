@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from "electron";
-import type { IDispatcher } from "./dispatcher.js";
+import type { IDispatcher } from "../shared/dispatcher.js";
 import { buildPtyBridge } from "./pty-bridge.js";
 
 const buildIpcRendererDispatcher = (): IDispatcher => ({
@@ -8,7 +8,7 @@ const buildIpcRendererDispatcher = (): IDispatcher => ({
       listener(...args);
     });
   },
-
+  
   send: (channel: string, ...args: any[]) => {
     ipcRenderer.send(channel, ...args);
   },
