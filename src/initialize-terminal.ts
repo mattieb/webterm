@@ -5,14 +5,14 @@ import { IPtyBridge } from "./pty-bridge.js";
 import { buildResizeHandler } from "./resize-handler.js";
 
 const terminalOptions: ITerminalOptions = {
-  fontFamily: "SF Mono, ui-monospace",
+  fontFamily: '"SF Mono", "Cascadia Mono", ui-monospace, monospace',
   fontSize: 13,
   minimumContrastRatio: 7, // WCAG AAA
 };
 
 export const initializeTerminal = async (
   terminalElement: HTMLElement,
-  pty: IPtyBridge,
+  pty: IPtyBridge
 ) => {
   const terminal = new Terminal(terminalOptions);
   const fitAddon = new FitAddon();
