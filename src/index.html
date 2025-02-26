@@ -2,6 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <!-- xterm.js sets inline styles, cf. <https://github.com/xtermjs/xterm.js/issues/4445> -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline';"
+    />
     <link rel="stylesheet" href="./index.css" />
     <title></title>
     <script type="module" src="./renderer.js"></script>
