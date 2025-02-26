@@ -8,8 +8,6 @@ declare global {
   }
 }
 
-console.log("renderer loaded");
-
 document.addEventListener("DOMContentLoaded", () => {
   const terminalElement = document.getElementById("terminal");
   if (isNull(terminalElement))

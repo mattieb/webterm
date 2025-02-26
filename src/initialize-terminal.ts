@@ -36,7 +36,6 @@ export const initializeTerminal = async (
   pty.onClose(() => disable(terminalElement));
 
   pty.onReady(() => {
-    console.log("ready");
     resize();
     terminal.focus();
   });
