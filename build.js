@@ -1,10 +1,47 @@
 import * as esbuild from "esbuild";
-import { execSync } from "child_process";
 import { mkdir, copyFile } from "fs/promises";
+import ts from "typescript";
 
 await mkdir("app", { recursive: true });
+await mkdir("lib", { recursive: true });
 
-execSync("npx -c tsc", { stdio: "inherit" });
+function checkTypeScriptDiagnostics(diagnostics) {
+  if (diagnostics.length) {
+    throw new Error(
+      ts.formatDiagnosticsWithColorAndContext(diagnostics, {
+        getCanonicalFileName: (f) => f,
+        getCurrentDirectory: ts.sys.getCurrentDirectory,
+        getNewLine: () => ts.sys.newLine,
+      })
+    );
+  }
+}
+
+// Compile TypeScript files
+const configPath = ts.findConfigFile("./", ts.sys.fileExists, "tsconfig.json");
+if (typeof configPath == "undefined") {
+  throw new Error("Could not find tsconfig.json");
+}
+
+// Parse tsconfig.json
+const { config } = ts.readConfigFile(configPath, ts.sys.readFile);
+const { options, fileNames, errors } = ts.parseJsonConfigFileContent(
+  config,
+  ts.sys,
+  "./"
+);
+
+// Check for config parsing errors
+checkTypeScriptDiagnostics(errors);
+
+// Create and build the program
+const program = ts.createProgram(fileNames, options);
+const emitResult = program.emit();
+
+// Check for compilation errors
+checkTypeScriptDiagnostics(
+  ts.getPreEmitDiagnostics(program).concat(emitResult.diagnostics)
+);
 
 await esbuild.build({
   entryPoints: ["lib/renderer.js"],
