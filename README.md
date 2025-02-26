@@ -1,8 +1,8 @@
 # webterm
 
-Because I wanted a terminal app neither sang nor danced… but then I got a little wild with it.
+Because I wanted a terminal app neither sang nor danced.
 
-webterm is a simple [Electron](https://www.electronjs.org) terminal app.
+webterm is a simple [Electron](https://www.electronjs.org) terminal app that primarily supports macOS, but also has very basic Windows support.
 
 ## Building
 
@@ -21,11 +21,8 @@ In the [app](./app) directory:
 npm start
 ```
 
-Currently only supports macOS, but it shouldn't take much to bring it elsewhere.
-
 A standalone app can be built:
 
 ```shell
 npm run build:app
 ```
-
