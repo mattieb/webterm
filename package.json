@@ -1,6 +1,6 @@
 {
   "name": "webterm",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "a terminal app that neither sings nor dances",
   "type": "module",
   "main": "app/main.js",

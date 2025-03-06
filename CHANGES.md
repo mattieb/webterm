@@ -1,3 +1,7 @@
+# 3.1.0
+
+This version introduces basic Windows compatibility. Like on Unix, if the the SHELL environment variable is set, it should use that—but if not, it will search for PowerShell, preferring recent versions, or falling back to the version built in to Windows.
+
 # 3.0.0
 
 This version drops the browser version in favor of a simple, straightforward app.
