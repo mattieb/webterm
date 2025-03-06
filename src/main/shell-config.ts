@@ -17,8 +17,6 @@ const POWERSHELL_PATHS = [
   },
 ];
 
-const locale = async () => (await osLocale()).replace("-", "_");
-
 const findPowerShell = async () => {
   for (const powerShellPath of POWERSHELL_PATHS) {
     const prefix = process.env[powerShellPath.env];
@@ -34,14 +32,26 @@ const findPowerShell = async () => {
   throw new Error("could not find PowerShell");
 };
 
+export const getWindowsShell = async () => {
+  const file = process.env["SHELL"] ?? await findPowerShell();
+  const argv0 = file;
+  return { file, argv0 };
+};
+
+export const getUnixShell = async () => {
+  const file = process.env["SHELL"] ?? "/bin/sh";
+  const argv0 = `-${basename(file)}`;
+  return { file, argv0 };
+};
+
+const locale = async () => (await osLocale()).replace("-", "_");
+
 export const getShellConfig = async () => {
-  const file =
-    process.env["SHELL"] ??
-    (process.platform == "win32" ? await findPowerShell() : "/bin/sh");
-
-  const argv0 = process.platform == "win32" ? file : `-${basename(file)}`;
-
+  const shell = process.platform === "win32"
+    ? await getWindowsShell()
+    : await getUnixShell();
+    
   const env = { LANG: `${await locale()}.UTF-8` };
-
-  return { file, argv0, env };
+  
+  return { ...shell, env };
 };
