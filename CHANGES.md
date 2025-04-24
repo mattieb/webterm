@@ -1,3 +1,7 @@
+# 3.2.1
+
+Fixed the Mac app being unable to launch.
+
 # 3.2.0
 
 This version fixes an issue with some emoji rendering. Previously, characters like "🙂" might have the next character overwrite their right half.

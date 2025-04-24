@@ -1,6 +1,6 @@
 {
   "name": "webterm",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "a terminal app that neither sings nor dances",
   "type": "module",
   "main": "app/main.js",
@@ -14,10 +14,10 @@
   },
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.5",
-    "electron": "^35.0.0",
-    "electron-builder": "^26.0.10",
-    "esbuild": "^0.25.0",
-    "typescript": "^5.8.2"
+    "electron": "^35.2.1",
+    "electron-builder": "^26.0.12",
+    "esbuild": "^0.25.3",
+    "typescript": "^5.8.3"
   },
   "dependencies": {
     "@xterm/addon-fit": "^0.10.0",
