@@ -1,3 +1,7 @@
+# 3.2.2
+
+Update packages, including "brace-expansion" (transitive dependency), which had a potential security issue.
+
 # 3.2.1
 
 Fixed the Mac app being unable to launch.
