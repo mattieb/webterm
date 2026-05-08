@@ -13,11 +13,11 @@
     "start": "electron ."
   },
   "devDependencies": {
-    "@tsconfig/strictest": "^2.0.5",
-    "electron": "^35.2.1",
-    "electron-builder": "^26.0.12",
-    "esbuild": "^0.25.3",
-    "typescript": "^5.8.3"
+    "@tsconfig/strictest": "^2.0.8",
+    "electron": "^35.7.5",
+    "electron-builder": "^26.8.1",
+    "esbuild": "^0.25.12",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@xterm/addon-fit": "^0.10.0",
