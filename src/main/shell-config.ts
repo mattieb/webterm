@@ -1,5 +1,5 @@
 import path, { basename } from "node:path";
-import { osLocale } from "os-locale";
+import osLocale from "os-locale";
 import fs from "node:fs/promises";
 import { isUndefined } from "../shared/is-undefined.js";
 

@@ -16,14 +16,14 @@
     "@tsconfig/strictest": "^2.0.8",
     "electron": "^35.7.5",
     "electron-builder": "^26.8.1",
-    "esbuild": "^0.25.12",
-    "typescript": "^5.9.3"
+    "esbuild": "^0.28.0",
+    "typescript": "^6.0.3"
   },
   "dependencies": {
-    "@xterm/addon-fit": "^0.10.0",
-    "@xterm/addon-unicode11": "^0.8.0",
-    "@xterm/xterm": "^5.5.0",
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/addon-unicode11": "^0.9.0",
+    "@xterm/xterm": "^6.0.0",
     "node-pty": "github:mattieb/node-pty#add-argv0-support",
-    "os-locale": "^6.0.2"
+    "os-locale": "^8.0.0"
   }
 }
