@@ -1,3 +1,7 @@
+# 3.2.3
+
+Update packages, including Electron to version 42, resolving all known audit issues.
+
 # 3.2.2
 
 Update packages, including "brace-expansion" (transitive dependency), which had a potential security issue.

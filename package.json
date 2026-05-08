@@ -1,7 +1,8 @@
 {
   "name": "webterm",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "a terminal app that neither sings nor dances",
+  "author": "Mattie Behrens <me@mattiebee.io>",
   "type": "module",
   "main": "app/main.js",
   "build": {
@@ -14,7 +15,7 @@
   },
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.8",
-    "electron": "^35.7.5",
+    "electron": "^42.0.1",
     "electron-builder": "^26.8.1",
     "esbuild": "^0.28.0",
     "typescript": "^6.0.3"
