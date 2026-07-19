@@ -1,6 +1,6 @@
 {
   "name": "webterm",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "description": "a terminal app that neither sings nor dances",
   "author": "Mattie Behrens <me@mattiebee.io>",
   "type": "module",
@@ -26,5 +26,10 @@
     "@xterm/xterm": "^6.0.0",
     "node-pty": "github:mattieb/node-pty#add-argv0-support",
     "os-locale": "^8.0.0"
+  },
+  "allowScripts": {
+    "electron-winstaller@5.4.0": true,
+    "esbuild@0.28.1": true,
+    "github:mattieb/node-pty#a4b9e2cd34244e182bd778cc64e15778e65194ee": true
   }
 }
